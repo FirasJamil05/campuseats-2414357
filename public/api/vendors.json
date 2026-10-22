@@ -1,0 +1,256 @@
+[
+  {
+    "id": "2414357-firas-maju-corner",
+    "name": "Firas Maju Corner",
+    "location": "Mahallah Salahuddin, Block E",
+    "openHours": "7:00 am - 10:00 pm",
+    "isOpen": true,
+    "menu": [
+      {
+        "id": "2414357-firas-maju-corner-1",
+        "name": "Nasi Goreng Pattaya",
+        "description": "Fried rice wrapped in a thin omelette, served with vegetables and chilli sauce",
+        "price": 6,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2414357-firas-maju-corner-2",
+        "name": "Maggi Kerabu",
+        "description": "Spicy and tangy Maggi noodles mixed with fresh herbs, vegetables, lime juice and chilli",
+        "price": 6.5,
+        "category": "Noodles",
+        "available": true
+      },
+      {
+        "id": "2414357-firas-maju-corner-3",
+        "name": "Nasi Ayam Buttermilk",
+        "description": "Steamed rice served with crispy chicken coated in creamy buttermilk sauce with curry leaves",
+        "price": 7,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2414357-firas-maju-corner-4",
+        "name": "Nasi Goreng Seafood",
+        "description": "Spicy fried rice cooked with prawns, squid, vegetables and aromatic spices",
+        "price": 8,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2414357-firas-maju-corner-5",
+        "name": "Nasi Kerabu Lemak Bakar",
+        "description": "Traditional blue herb rice served with grilled chicken, fresh herbs, vegetables and rich coconut gravy",
+        "price": 8.5,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2414357-firas-maju-corner-6",
+        "name": "Coconut Shake",
+        "description": "Refreshing blended coconut drink made with coconut water, coconut flesh, milk and ice cream",
+        "price": 4,
+        "category": "Drinks",
+        "available": true
+      },
+      {
+        "id": "2414357-firas-maju-corner-7",
+        "name": "Orange Juice",
+        "description": "Refreshing orange juice served chilled with ice",
+        "price": 2,
+        "category": "Drinks",
+        "available": true
+      },
+      {
+        "id": "2414357-firas-maju-corner-8",
+        "name": "Sirap Bandung Laici",
+        "description": "Sweet rose syrup mixed with milk, served with lychee fruits and ice",
+        "price": 3.5,
+        "category": "Drinks",
+        "available": true
+      }
+    ]
+  },
+  {
+    "id": "2412663-faiz-cafe",
+    "name": "FAIZ CAFE",
+    "location": "Mahallah Bilal, Block A",
+    "openHours": "7:00 am - 10:00 pm",
+    "isOpen": true,
+    "menu": [
+      {
+        "id": "2412663-faiz-01",
+        "name": "Nasi Kerabu Ayam Percik",
+        "description": "Blue herb rice with grilled chicken, fresh vegetables and percik sauce",
+        "price": 9.5,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-02",
+        "name": "Nasi Daging Salai Masak Lemak",
+        "description": "Rice with smoked beef in a creamy turmeric and chilli gravy",
+        "price": 11,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-03",
+        "name": "Nasi Goreng Kampung",
+        "description": "Spicy fried rice with anchovies, long beans and a fried egg",
+        "price": 7.5,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-04",
+        "name": "Mee Kari Ayam",
+        "description": "Yellow noodles with chicken, tofu and vegetables in curry broth",
+        "price": 8,
+        "category": "Noodles",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-05",
+        "name": "Char Kuey Teow Kerang",
+        "description": "Wok-fried flat noodles with cockles, egg and bean sprouts",
+        "price": 8.5,
+        "category": "Noodles",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-06",
+        "name": "Bihun Sup Utara",
+        "description": "Rice vermicelli in a clear beef broth with herbs and lime",
+        "price": 7,
+        "category": "Noodles",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-07",
+        "name": "Teh Ais Limau",
+        "description": "Iced tea with fresh lime",
+        "price": 2.5,
+        "category": "Drinks",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-08",
+        "name": "Sirap Selasih",
+        "description": "Chilled rose syrup drink with basil seeds",
+        "price": 2.8,
+        "category": "Drinks",
+        "available": true
+      },
+      {
+        "id": "2412663-faiz-09",
+        "name": "Kopi O Ais",
+        "description": "Iced black coffee",
+        "price": 2.2,
+        "category": "Drinks",
+        "available": true
+      }
+    ]
+  },
+  {
+    "id": "2415805-kafe-siddiq",
+    "name": "Kafe Mahallah Siddiq",
+    "location": "Mahallah Siddiq, Block C",
+    "openHours": "7:00 am - 10:00 pm",
+    "isOpen": true,
+    "menu": [
+      {
+        "id": "2415805-s1",
+        "name": "Nasi Goreng Kampung",
+        "description": "...",
+        "price": 6.5,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2415805-s2-Naz",
+        "name": "Naz's Nasi Ayam Special",
+        "price": 8.5,
+        "category": "Rice",
+        "popular": true,
+        "special": true,
+        "available": true
+      },
+      {
+        "id": "2415805-s3",
+        "name": "Nasi Goreng Pattaya",
+        "description": "...",
+        "price": 7,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "2415805-a1",
+        "name": "Ice Lemon Tea",
+        "description": "...",
+        "price": 2,
+        "category": "Drinks",
+        "available": true
+      },
+      {
+        "id": "2415805-a2",
+        "name": "Rootbeer Float",
+        "description": "Macam A&W",
+        "price": 3.5,
+        "category": "Drinks",
+        "available": true
+      },
+      {
+        "id": "2415805-a3",
+        "name": "Iced Coffee",
+        "description": "...",
+        "price": 2,
+        "category": "Drinks",
+        "available": true
+      },
+      {
+        "id": "2415805-m1",
+        "name": "Mee Tarik",
+        "description": "...",
+        "price": 6.5,
+        "category": "Noodles",
+        "available": true
+      },
+      {
+        "id": "2415805-m2",
+        "name": "Mee Goreng Mamak",
+        "description": "...",
+        "price": 6,
+        "category": "Noodles",
+        "available": true
+      }
+
+    ]
+  },
+  {
+    "id": "kafe-aminah",
+    "name": "Kafe Mahallah Aminah",
+    "location": "Mahallah Aminah, Ground Floor",
+    "openHours": "8:00 am - 9:00 pm",
+    "isOpen": true,
+    "menu": [
+      {
+        "id": "ami-1",
+        "name": "Nasi Ayam Penyet",
+        "description": "Smashed fried chicken with sambal and rice",
+        "price": 9,
+        "category": "Rice",
+        "available": true
+      },
+      {
+        "id": "ami-2",
+        "name": "Air Bandung",
+        "description": "Rose syrup with milk",
+        "price": 3,
+        "category": "Drinks",
+        "available": true
+      }
+    ]
+  }
+]
