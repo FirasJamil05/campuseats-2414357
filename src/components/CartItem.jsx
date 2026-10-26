@@ -1,24 +1,42 @@
-
-function CartItem({ line, onChangeQty, onRemove }) {
-  const { item, qty } = line
+function CartItem({ line, onChangeQty, onRemove, onChangeNote }) {
+  const { item, qty, note } = line
 
   return (
-    <div className="cart-item">
+    <li className="cart-line">
       <div>
-        <h3>{item.name}</h3>
-        <p>RM {item.price.toFixed(2)} each</p>
+        <p className="cart-name">{item.name}</p>
+        <p className="muted">RM {item.price.toFixed(2)} each</p>
       </div>
 
-      <div>
-        <button onClick={() => onChangeQty(item.id, -1)}>−</button>
+      <div className="qty">
+        <button type="button" onClick={() => onChangeQty(item.id, -1)}>−</button>
         <span>{qty}</span>
-        <button onClick={() => onChangeQty(item.id, 1)}>+</button>
+        <button type="button" onClick={() => onChangeQty(item.id, 1)}>+</button>
       </div>
 
-      <p>RM {(item.price * qty).toFixed(2)}</p>
+      <p className="line-total">
+        RM {(item.price * qty).toFixed(2)}
+      </p>
 
-      <button onClick={() => onRemove(item.id)}>Remove</button>
-    </div>
+      <button
+        type="button"
+        className="link danger"
+        onClick={() => onRemove(item.id)}
+      >
+        Remove
+      </button>
+
+      <div className="cart-note">
+        <label htmlFor={`note-${item.id}`}>Order note</label>
+        <textarea
+          id={`note-${item.id}`}
+          rows={3}
+          placeholder="e.g. Less spicy, no onions"
+          value={note ?? ''}
+          onChange={(e) => onChangeNote(item.id, e.target.value)}
+        />
+      </div>
+    </li>
   )
 }
 

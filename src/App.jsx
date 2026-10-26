@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import Header from './components/Header.jsx'
 import VendorCard from './components/VendorCard.jsx'
@@ -9,32 +8,50 @@ import Footer from './components/Footer.jsx'
 
 function App() {
   const [vendors, setVendors] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(null)
   const [reloadKey, setReloadKey] = useState(0)
+  const [completedRequestKey, setCompletedRequestKey] = useState(-1)
+
+  // A new reloadKey means the current request is loading. This also avoids
+  // resetting state directly inside an effect (React Hooks lint rule).
+  const loading = completedRequestKey !== reloadKey
 
   useEffect(() => {
-    setLoading(true)
-    setError('')
+    const controller = new AbortController()
 
-    fetch('/api/vendors.json')
+    fetch('/api/vendors.json', { signal: controller.signal })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Failed to load vendors')
+          throw new Error(`Failed to load vendors (HTTP ${response.status})`)
         }
         return response.json()
       })
-      .then((data) => setVendors(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false))
+      .then((data) => {
+        if (!controller.signal.aborted) {
+          setVendors(data)
+          setError(null)
+        }
+      })
+      .catch((err) => {
+        if (err.name !== 'AbortError' && !controller.signal.aborted) {
+          setError(err.message)
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setCompletedRequestKey(reloadKey)
+        }
+      })
+
+    return () => controller.abort()
   }, [reloadKey])
 
   const [selectedVendorId, setSelectedVendorId] = useState(null)
-
   const selectedVendor = vendors.find(
     (v) => v.id === selectedVendorId
   ) || vendors[0]
 
+  // Cart lines have the structure { item, qty, note }.
   const [cart, setCart] = useState([])
 
   function handleAddToCart(item) {
@@ -51,7 +68,7 @@ function App() {
         )
       }
 
-      return [...prevCart, { item, qty: 1 }]
+      return [...prevCart, { item, qty: 1, note: '' }]
     })
   }
 
@@ -73,6 +90,16 @@ function App() {
     )
   }
 
+  // B6 (matric ending in 7): each cart line owns an editable order note.
+  // The textarea is controlled from the state lifted up to App.
+  function handleChangeNote(itemId, note) {
+    setCart((prevCart) =>
+      prevCart.map((line) =>
+        line.item.id === itemId ? { ...line, note } : line
+      )
+    )
+  }
+
   const [view, setView] = useState('menu') // 'menu' | 'cart' | 'done'
   const [lastOrder, setLastOrder] = useState(null)
 
@@ -82,7 +109,8 @@ function App() {
       0
     )
 
-    setLastOrder({ ...details, total })
+    // Save the purchased lines (including order notes) before clearing the cart.
+    setLastOrder({ ...details, total, lines: cart.map((line) => ({ ...line })) })
     setCart([])
     setView('done')
   }
@@ -100,6 +128,7 @@ function App() {
         cart={cart}
         onChangeQty={handleChangeQty}
         onRemove={handleRemove}
+        onChangeNote={handleChangeNote}
         onPlaceOrder={handlePlaceOrder}
       />
     )
@@ -111,13 +140,27 @@ function App() {
         <p>Mahallah: {lastOrder.mahallah}</p>
         <p>Pickup Time: {lastOrder.pickupTime}</p>
         <p>Total: RM {lastOrder.total.toFixed(2)}</p>
+        {lastOrder.lines.some((line) => line.note?.trim()) && (
+          <div>
+            <h3>Order notes</h3>
+            <ul>
+              {lastOrder.lines
+                .filter((line) => line.note?.trim())
+                .map((line) => (
+                  <li key={line.item.id}>
+                    {line.item.name}: {line.note}
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
       </section>
     )
   } else if (loading) {
-  content = <Loading />
-} else if (error) {
-  content = <ErrorMessage message={error} onRetry={() => setReloadKey((k) => k + 1)} />
-} else {
+    content = <Loading />
+  } else if (error) {
+    content = <ErrorMessage message={error} onRetry={() => setReloadKey((k) => k + 1)} />
+  } else {
     content = (
       <>
         <section>
@@ -138,7 +181,6 @@ function App() {
           <h2 className="section-title">
             Menu: {selectedVendor?.name}
           </h2>
-
           {selectedVendor && (
             <MenuList
               items={selectedVendor.menu}
@@ -157,11 +199,7 @@ function App() {
         onShowMenu={() => setView('menu')}
         onShowCart={() => setView('cart')}
       />
-
-      <main className="container">
-        {content}
-      </main>
-
+      <main className="container">{content}</main>
       <Footer />
     </>
   )
