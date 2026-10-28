@@ -101,7 +101,8 @@ start; }
 .error { border-left: 4px solid #b3261e; }
 
 
-/* Order note section */
+
+/* Order note section in cart */
 .cart-note {
   grid-column: 1 / -1;
   display: flex;
@@ -111,19 +112,15 @@ start; }
   margin-top: 10px;
 }
 
-/* Order note label */
 .cart-note label {
   display: block;
   font-size: 1rem;
-  font-weight: 400;
   color: #14243a;
 }
 
-/* Order note text box */
 .cart-note textarea {
   display: block;
   width: 100%;
-  box-sizing: border-box;
   min-height: 65px;
   padding: 8px;
   border: 1px solid #c5cbd3;
@@ -133,8 +130,18 @@ start; }
   resize: vertical;
 }
 
-/* When user clicks the text box */
 .cart-note textarea:focus {
   outline: 2px solid #006b60;
   outline-offset: 1px;
+}
+
+/* Saved order note on My Orders page */
+.order-saved-note {
+  flex-basis: 100%;
+  background: #f5faf9;
+  border-radius: 6px;
+  padding: 0.65rem;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }

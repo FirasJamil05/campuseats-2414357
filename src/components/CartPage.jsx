@@ -1,35 +1,55 @@
-import CartItem from './CartItem.jsx'
-import CheckoutForm from './CheckoutForm.jsx'
+import { Link, useNavigate } from 'react-router'
+import CartItem from '../components/CartItem.jsx'
+import CheckoutForm from '../components/CheckoutForm.jsx'
+import { useCart } from '../hooks/useCart.js'
 
-function CartPage({ cart, onChangeQty, onRemove, onChangeNote, onPlaceOrder }) {
-  if (cart.length === 0) {
-    return <p className="muted">Your cart is empty. Pick something from a menu first.</p>
+function CartPage() {
+  const { cart, total, placeOrder } = useCart()
+  const navigate = useNavigate()
+
+  function handlePlaceOrder(details) {
+    const order = placeOrder(details)
+
+    if (order) {
+      navigate('/orders')
+    }
   }
 
-  // B4: derive the amount from cart lines; do not store the total in state.
-  const total = cart.reduce(
-    (sum, line) => sum + line.item.price * line.qty,
-    0
-  )
+  if (cart.length === 0) {
+    return (
+      <section>
+        <h2 className="section-title">Your cart</h2>
+        <p className="muted">
+          Your cart is empty. Pick something from a menu first.
+        </p>
+        <Link to="/">Browse vendors</Link>
+      </section>
+    )
+  }
 
   return (
-    <div className="cart-layout">
-      <div className="card">
-        <ul className="cart-list">
-          {cart.map((line) => (
-            <CartItem
-              key={line.item.id}
-              line={line}
-              onChangeQty={onChangeQty}
-              onRemove={onRemove}
-              onChangeNote={onChangeNote}
-            />
-          ))}
-        </ul>
-        <p className="cart-total">Total: RM {total.toFixed(2)}</p>
+    <section>
+      <h2 className="section-title">Your cart</h2>
+
+      <div className="cart-layout">
+        <div className="card">
+          <ul className="cart-list">
+            {cart.map((line) => (
+              <CartItem
+                key={line.item.id}
+                line={line}
+              />
+            ))}
+          </ul>
+
+          <p className="cart-total">
+            Total: RM {total.toFixed(2)}
+          </p>
+        </div>
+
+        <CheckoutForm onPlaceOrder={handlePlaceOrder} />
       </div>
-      <CheckoutForm onPlaceOrder={onPlaceOrder} />
-    </div>
+    </section>
   )
 }
 
